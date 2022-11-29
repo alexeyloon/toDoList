@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from "./AppWithRedux";
 import EditableSpan from "./EditableSpan";
-import {Button, ButtonGroup, Checkbox, IconButton, List, ListItem} from "@material-ui/core";
+import {Button, ButtonGroup, Checkbox, IconButton,ListItem} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddItemForm from "./AddItemForm";
 import {useDispatch, useSelector} from "react-redux";

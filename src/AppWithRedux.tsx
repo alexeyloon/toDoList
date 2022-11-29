@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import React, {useEffect, useReducer, useState} from "react";
+import React, {useCallback, useEffect, useReducer, useState} from "react";
 import TodoList, {TaskType} from "./TodoList";
 import AddItemForm from "./AddItemForm";
 import './App.css'
@@ -40,36 +40,34 @@ function AppWithRedux() {
   const dispatch = useDispatch()
 
 // tasks CRUD
-  const removeTask = (taskId: string, todoListId: string) => {
+  const removeTask = useCallback((taskId: string, todoListId: string) => {
     dispatch(removeTaskActionCreator(taskId, todoListId))
-  }
-  const addTask = (title: string, todoListId: string) => {
+  },[dispatch])
+  const addTask = useCallback((title: string, todoListId: string) => {
     dispatch(addTaskActionCreator(title, todoListId))
-  }
-  const changeTaskStatus = (taskId: string, isDone: boolean, todoListId: string) => {
+  },[dispatch])
+  const changeTaskStatus = useCallback((taskId: string, isDone: boolean, todoListId: string) => {
     dispatch(changeTaskStatusAC(taskId, isDone, todoListId))
-  }
-  const changeTaskTitle = (taskId: string, title: string, todoListId: string) => {
+  },[dispatch])
+  const changeTaskTitle = useCallback((taskId: string, title: string, todoListId: string) => {
     dispatch(changeTaskTitleAC(taskId, title, todoListId))
-  }
+  },[dispatch])
 
 //todoList CRUD
-  const changeTodoListFilter = (filter: FilterValuesType, todoListId: string) => {
+  const changeTodoListFilter = useCallback((filter: FilterValuesType, todoListId: string) => {
     dispatch(ChangeTodoListFilterActionCreator(filter, todoListId))
-  }
-  const changeTodoListTitle = (title: string, todoListId: string) => {
+  },[dispatch])
+  const changeTodoListTitle = useCallback((title: string, todoListId: string) => {
     dispatch(ChangeTodoListTitleActionCreator(title, todoListId))
-  }
-  const removeTodoList = (todoListId: string) => {
+  },[dispatch])
+  const removeTodoList = useCallback((todoListId: string) => {
     dispatch(RemoveTodoListActionCreator(todoListId))
-  }
-  const addTodoList = (title: string) => {
+  },[dispatch])
+  const addTodoList = useCallback((title: string) => {
     dispatch(AddTodoListActionCreator(title))
-  }
+  },[dispatch])
 
-  // useEffect(() => {
-  //     console.log(todoLists)
-  // }, [todoLists])
+
 
   //UI
 
